@@ -23,7 +23,8 @@ const useFetch = (url) => {
         })
         .catch((err) => {
             setError(err)
-        }).finally(() => {
+        })
+        .finally(() => {
             setLoading(false)
         })
     }, [url])
