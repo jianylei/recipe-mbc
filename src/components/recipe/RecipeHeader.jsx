@@ -1,4 +1,5 @@
 import parse from 'html-react-parser'
+import { parseAnchorTag } from '../../utils/util'
 
 /**
  * @desc - Recipe header component
@@ -12,7 +13,7 @@ const RecipeHeader = ({ title, image, summary }) => {
         <>
             <h1>{title}</h1>
             <img src={image} />
-            <p>{parse(summary)}</p>
+            <p>{parse(parseAnchorTag(summary))}</p>
         </>
     )
 }
