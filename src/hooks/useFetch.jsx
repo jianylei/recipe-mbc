@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
  * @returns {object} { loading, error, data }  
  */
 const useFetch = (url) => {
-    console.log(url)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [data, setData] = useState(null)
@@ -23,7 +22,6 @@ const useFetch = (url) => {
             setData(data)
         })
         .catch((err) => {
-            console.error(err)
             setError(err)
         }).finally(() => {
             setLoading(false)
