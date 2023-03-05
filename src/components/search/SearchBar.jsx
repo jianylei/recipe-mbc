@@ -1,6 +1,10 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+/**
+ * @desc - SearchBar component
+ * @onSubmit - Redirect to search page
+ */
 const SearchBar = () => {
     const [search, setSearch] = useState("")
 
