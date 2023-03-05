@@ -10,7 +10,10 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path='/' element={<Home />} />
-        <Route path='search/:name' element={<Search />} />
+        <Route path='search'>
+          <Route index element={<></>} />
+          <Route path=':name' element={<Search />} />
+        </Route>
         <Route path='recipes/:id' element={<Recipe />} />
         <Route path='*' element={<NotFound />} />
       </Route>
