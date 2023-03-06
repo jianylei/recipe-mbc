@@ -44,6 +44,7 @@ const Search = () => {
     content = (
       <div className="search-main__container">
         <div className="search-results__container">
+          <h1 className="search-results__title">Results for <span>{decoded}</span></h1>
           { recipes.results.length === 0
             ? name
               ? <div>No recipes found for {decoded}</div>

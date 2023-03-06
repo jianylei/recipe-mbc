@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSearchParams } from "react-router-dom"
+import ReactLogo from "../../assets/search.svg"
 
 /**
  * @desc - SearchBar component
@@ -34,12 +35,15 @@ const SearchBar = () => {
     return (
         <form onSubmit={handleSubmit}>
             <input 
+                className="search-bar__input"
                 name="search"
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <button disabled={!canSave}>search</button>
+            <button className="btn-search" disabled={!canSave}>
+                <img className="search-icon" src={ReactLogo} alt='Search Icon' />
+            </button>
         </form>
     )
 }
