@@ -33,9 +33,8 @@ const SearchOptions = ({ cuisineState, numberPerPageState }) => {
 
     console.log(cuisines)
     return (
-        <div>
+        <div className="cuisine-filter__container">
             {cuisineButtons}
-            <button onClick={() => console.log(cuisines)}>test</button>
         </div>
     )
 }

@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --BORDER-RADIUS-BUBBLE: 99em;
+  --COLOR-DARK: rgba(41, 41, 41, 1);
+  --COLOR-LIGHT: rgb(255, 255, 255);
+  --COLOR-GREY: rgba(117, 117, 117, 1);
+  --COLOR-LIGHT-GREY: rgb(204, 204, 204);
+  --COLOR-ACTIVE: rgb(26, 137, 23);
+  --COLOR-ACTIVE-HOVER: rgb(23, 122, 20);
+}
+
+/*  || BUTTONS */
+.btn-select {
+  background-color: var(--COLOR-LIGHT);
+  border: 1px solid var(--COLOR-LIGHT-GREY);
+  border-radius: var(--BORDER-RADIUS-BUBBLE);
+  color: var(--COLOR-GREY);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: all 200ms ease-in;
+}
+
+.btn-select:hover {
+  border-color: var(--COLOR-GREY);
+  background-color: var(--COLOR-GREY);
+  color: var(--COLOR-LIGHT);
+}
+
+.btn-active {
+  border-color: var(--COLOR-ACTIVE);
+  color: var(--COLOR-ACTIVE);
+}
+
+.btn-select.btn-active:hover {
+  border-color: var(--COLOR-ACTIVE);
+  background-color: var(--COLOR-ACTIVE);
+  color: var(--COLOR-LIGHT);
+}
+
+/*  || FILTER */
+.cuisine-filter__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
