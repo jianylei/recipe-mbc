@@ -2,9 +2,7 @@
  * @desc - Not found component
  */
 const NotFound = () => {
-  return (
-    <div>NotFound</div>
-  )
-}
+  return <div>NotFound</div>;
+};
 
-export default NotFound
+export default NotFound;

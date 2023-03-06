@@ -1,5 +1,5 @@
-import parse from 'html-react-parser'
-import { parseAnchorTag } from '../../utils/util'
+import parse from 'html-react-parser';
+import { parseAnchorTag } from '../../utils/util';
 
 /**
  * @desc - Recipe header component
@@ -9,15 +9,13 @@ import { parseAnchorTag } from '../../utils/util'
  * @returns {component} - The recipe header component
  */
 const RecipeHeader = ({ title, image, summary }) => {
-    return (
-        <div className='recipe-header__container'>
-            <h1 className='recipe__title'>{title}</h1>
-            <img className='recipe__image' src={image} />
-            <div className='recipe-summary__container'>
-                {parse(parseAnchorTag(summary))}
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="recipe-header__container">
+      <h1 className="recipe__title">{title}</h1>
+      <img className="recipe__image" src={image} />
+      <div className="recipe-summary__container">{parse(parseAnchorTag(summary))}</div>
+    </div>
+  );
+};
 
-export default RecipeHeader
+export default RecipeHeader;

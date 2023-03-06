@@ -1,34 +1,31 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
 /**
- * 
+ *
  * @param {Object} recipe - Recipe object
  * @returns {component} - Search item component
  */
 const SearchItem = ({ recipe }) => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate(`/recipes/${recipe.id}`)
-    }
+  const handleClick = () => {
+    navigate(`/recipes/${recipe.id}`);
+  };
 
-    return (
-        <div className="search-item__container">
-            <h2
-                className="search-item-title"
-                onClick={handleClick}
-            >
-                {recipe.title}
-            </h2>
-            <img
-                className="search-item-image"
-                src={recipe.image}
-                alt={recipe.title}
-                loading="lazy"
-                onClick={handleClick}
-            />
-        </div>
-    )
-}
+  return (
+    <div className="search-item__container">
+      <h2 className="search-item-title" onClick={handleClick}>
+        {recipe.title}
+      </h2>
+      <img
+        className="search-item-image"
+        src={recipe.image}
+        alt={recipe.title}
+        loading="lazy"
+        onClick={handleClick}
+      />
+    </div>
+  );
+};
 
-export default SearchItem
+export default SearchItem;

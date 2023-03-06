@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
-import { CUISINES } from "../../utils/constants"
-import { useNavigate, useSearchParams } from "react-router-dom"
-import Pagination from "./Pagination"
-import useWindowDimensions from "../../hooks/useWindowDimensions"
+import { useEffect, useState } from 'react';
+import { CUISINES } from '../../utils/constants';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import Pagination from './Pagination';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 /**
  * @param {Object} cuisineState - Cuisine state
@@ -12,137 +12,123 @@ import useWindowDimensions from "../../hooks/useWindowDimensions"
  * @param {Function} onPageChange - Function to change page
  * @returns {component} - Search options component
  */
-const SearchOptions = ({
-    cuisineState,
-    numberPerPageState,
-    total,
-    currentPage,
-    onPageChange
-}) => {
-    const [cuisines, setCuisines] = cuisineState
-    const [numberPerPage, setNumberPerPage] = numberPerPageState
-    const [checked, setChecked] = useState(
-        new Array(CUISINES.length).fill(false)
-    )
+const SearchOptions = ({ cuisineState, numberPerPageState, total, currentPage, onPageChange }) => {
+  const [cuisines, setCuisines] = cuisineState;
+  const [numberPerPage, setNumberPerPage] = numberPerPageState;
+  const [checked, setChecked] = useState(new Array(CUISINES.length).fill(false));
 
-    const [searchParams] = useSearchParams()
+  const [searchParams] = useSearchParams();
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const { width } = useWindowDimensions()
+  const { width } = useWindowDimensions();
 
-    useEffect(() => {
-        if (cuisines.length) {
-            const newChecked = new Array(CUISINES.length).fill(false)
-            CUISINES.forEach((cuisine, index) => {
-                if (cuisines.includes(cuisine)) {
-                    newChecked[index] = true
-                }
-            })
-            setChecked(newChecked)
+  useEffect(() => {
+    if (cuisines.length) {
+      const newChecked = new Array(CUISINES.length).fill(false);
+      CUISINES.forEach((cuisine, index) => {
+        if (cuisines.includes(cuisine)) {
+          newChecked[index] = true;
         }
-    }, [])
-
-    const handleCuisineClick = (index) => {
-        const newChecked = [...checked]
-        newChecked[index] = !newChecked[index]
-        setChecked(newChecked)
-        onPageChange(1)
-
-        navigate({
-            pathname: '/search',
-            search: `?query=${searchParams.get('query')}`
-                + `&page=1`
-                + `&number=${searchParams.get('number')}` 
-                + `&cuisine=${newChecked[index] ? cuisines.concat(CUISINES[index]).join(',') :
-                    cuisines.filter((cuisine) => cuisine !== CUISINES[index]).join(',')}`
-        })
-
-        if (newChecked[index]) {
-            setCuisines([...cuisines, CUISINES[index]])
-        } else {
-            setCuisines(cuisines.filter((cuisine) => cuisine !== CUISINES[index]))
-        }
-        
+      });
+      setChecked(newChecked);
     }
+  }, []);
 
-    const handleNumberClick = (num) => {
-        onPageChange(1)
-        navigate({
-            pathname: '/search',
-            search: `?query=${searchParams.get('query')}`
-                + `&page=1`
-                + `&number=${num}`
-                + `${searchParams.get('cuisine') ? `&cuisine=${searchParams.get('cuisine')}` : ''}`
-        })
-        setNumberPerPage(num)
+  const handleCuisineClick = (index) => {
+    const newChecked = [...checked];
+    newChecked[index] = !newChecked[index];
+    setChecked(newChecked);
+    onPageChange(1);
+
+    navigate({
+      pathname: '/search',
+      search:
+        `?query=${searchParams.get('query')}` +
+        `&page=1` +
+        `&number=${searchParams.get('number')}` +
+        `&cuisine=${
+          newChecked[index]
+            ? cuisines.concat(CUISINES[index]).join(',')
+            : cuisines.filter((cuisine) => cuisine !== CUISINES[index]).join(',')
+        }`
+    });
+
+    if (newChecked[index]) {
+      setCuisines([...cuisines, CUISINES[index]]);
+    } else {
+      setCuisines(cuisines.filter((cuisine) => cuisine !== CUISINES[index]));
     }
+  };
 
-    const handleReset = () => {
-        navigate({
-            pathname: '/search',
-            search: `?query=${searchParams.get('query')}`
-                + `&page=1`
-                + `&number=5`
-        })
-        setChecked(new Array(CUISINES.length).fill(false))
-        setCuisines([])
-        setNumberPerPage(5)
-        onPageChange(1)
-    }
+  const handleNumberClick = (num) => {
+    onPageChange(1);
+    navigate({
+      pathname: '/search',
+      search:
+        `?query=${searchParams.get('query')}` +
+        `&page=1` +
+        `&number=${num}` +
+        `${searchParams.get('cuisine') ? `&cuisine=${searchParams.get('cuisine')}` : ''}`
+    });
+    setNumberPerPage(num);
+  };
 
-    const cuisineButtons = CUISINES.map((cuisine, index) => {
-        return (
-            <button
-                className={`btn-select ${checked[index] ? 'btn-active' : ''}`}
-                key={index}
-                onClick={() => handleCuisineClick(index)}
-            >
-                {cuisine.replace('-', ' ')}
-            </button>
-        )
-    })
+  const handleReset = () => {
+    navigate({
+      pathname: '/search',
+      search: `?query=${searchParams.get('query')}` + `&page=1` + `&number=5`
+    });
+    setChecked(new Array(CUISINES.length).fill(false));
+    setCuisines([]);
+    setNumberPerPage(5);
+    onPageChange(1);
+  };
 
-    const numberButtons = [5, 10, 25, 50].map((number) => {
-        return (
-            <button
-                className={`btn-select btn-num ${+numberPerPage === +number ? 'btn-active' : ''}`}
-                key={number}
-                onClick={() => handleNumberClick(number)}
-            >
-                {number}
-            </button>
-        )
-    })
-
+  const cuisineButtons = CUISINES.map((cuisine, index) => {
     return (
-        <div className="side-main__container">
-            {
-                width > 904
-                    ? <h2>Search Options</h2>
-                    : null
-            }
-            <h3>Recipes per page</h3>
-            <div className="filter-number__container">
-                {numberButtons}
-            </div>
-            <h3>Filter by cuisine</h3>
-            <div className="filter-cuisine__container">
-                {cuisineButtons}
-            </div>
-            <button className="btn-reset" onClick={handleReset}>Reset</button>
-            {
-                width > 904
-                    ? <Pagination 
-                        total={total}
-                        numberPerPage={numberPerPage}
-                        currentPage={currentPage}
-                        onPageChange={onPageChange}
-                    />
-                    : null
-            }
-        </div>
-    )
-}
+      <button
+        className={`btn-select ${checked[index] ? 'btn-active' : ''}`}
+        key={index}
+        onClick={() => handleCuisineClick(index)}
+      >
+        {cuisine.replace('-', ' ')}
+      </button>
+    );
+  });
 
-export default SearchOptions
+  const numberButtons = [5, 10, 25, 50].map((number) => {
+    return (
+      <button
+        className={`btn-select btn-num ${+numberPerPage === +number ? 'btn-active' : ''}`}
+        key={number}
+        onClick={() => handleNumberClick(number)}
+      >
+        {number}
+      </button>
+    );
+  });
+
+  return (
+    <div className="side-main__container">
+      {width > 904 ? <h2>Search Options</h2> : null}
+      <h3>Recipes per page</h3>
+      <div className="filter-number__container">{numberButtons}</div>
+      <h3>Filter by cuisine</h3>
+      <div className="filter-cuisine__container">{cuisineButtons}</div>
+      <button className="btn-reset" onClick={handleReset}>
+        Reset
+      </button>
+      {width > 904 ? (
+        <Pagination
+          total={total}
+          numberPerPage={numberPerPage}
+          currentPage={currentPage}
+          onPageChange={onPageChange}
+        />
+      ) : null}
+    </div>
+  );
+};
+
+export default SearchOptions;

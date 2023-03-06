@@ -1,4 +1,4 @@
-import { usePagination, SEPERATOR } from "../../hooks/usePagination"
+import { usePagination, SEPERATOR } from '../../hooks/usePagination';
 
 /**
  * @desc - Pagination component
@@ -9,64 +9,56 @@ import { usePagination, SEPERATOR } from "../../hooks/usePagination"
  * @param {function} props.onPageChange - The function to call when page changes
  * @returns {component} - The pagination component
  */
-const Pagination = ({
+const Pagination = ({ total, numberPerPage, currentPage, siblingCount = 1, onPageChange }) => {
+  const paginationRange = usePagination({
     total,
     numberPerPage,
     currentPage,
-    siblingCount = 1,
-    onPageChange
-}) => {
-    const paginationRange = usePagination({
-        total,
-        numberPerPage,
-        currentPage,
-        siblingCount
-    })
+    siblingCount
+  });
 
-    if (currentPage === 0 || paginationRange.length < 2) return null
+  if (currentPage === 0 || paginationRange.length < 2) return null;
 
-    const nextPage = () => onPageChange(currentPage + 1)
-    const prevPage = () => onPageChange(currentPage - 1)
-    
-    const lastPage = paginationRange[paginationRange.length - 1]
+  const nextPage = () => onPageChange(currentPage + 1);
+  const prevPage = () => onPageChange(currentPage - 1);
 
-    const pageButtons = paginationRange.map((pageNumber, index) => {
-        if (pageNumber === SEPERATOR) {
-            return <span key={index}>&#8230;</span>
-        }
+  const lastPage = paginationRange[paginationRange.length - 1];
 
-        return (
-            <button
-                key={index}
-                className={`btn-select btn-page ${+currentPage === pageNumber ? 'page-active' : ''}`}
-                onClick={() => onPageChange(pageNumber)}
-            >
-                {pageNumber}
-            </button>
-        )
-    })
+  const pageButtons = paginationRange.map((pageNumber, index) => {
+    if (pageNumber === SEPERATOR) {
+      return <span key={index}>&#8230;</span>;
+    }
 
     return (
-        <div className="pagination__container">
-            <button 
-                className={`btn-page-nav ${+currentPage === 1 ? '' : 'btn-page-nav-active'}`}
-                onClick={prevPage}
-                disabled={+currentPage === 1}
-            >
-                Prev
-            </button>
-            <div className="page-btn__container">
-                {pageButtons}
-            </div>
-            <button
-                className={`btn-page-nav ${+currentPage === lastPage ? '' : 'btn-page-nav-active'}`}
-                onClick={nextPage}
-                disabled={+currentPage === lastPage}
-            >
-                Next
-            </button>
-        </div>
-    )
-}
+      <button
+        key={index}
+        className={`btn-select btn-page ${+currentPage === pageNumber ? 'page-active' : ''}`}
+        onClick={() => onPageChange(pageNumber)}
+      >
+        {pageNumber}
+      </button>
+    );
+  });
 
-export default Pagination
+  return (
+    <div className="pagination__container">
+      <button
+        className={`btn-page-nav ${+currentPage === 1 ? '' : 'btn-page-nav-active'}`}
+        onClick={prevPage}
+        disabled={+currentPage === 1}
+      >
+        Prev
+      </button>
+      <div className="page-btn__container">{pageButtons}</div>
+      <button
+        className={`btn-page-nav ${+currentPage === lastPage ? '' : 'btn-page-nav-active'}`}
+        onClick={nextPage}
+        disabled={+currentPage === lastPage}
+      >
+        Next
+      </button>
+    </div>
+  );
+};
+
+export default Pagination;
