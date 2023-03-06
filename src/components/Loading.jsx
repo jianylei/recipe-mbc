@@ -1,3 +1,6 @@
+/**
+ * @desc - Loading component
+ */
 const Loading = () => {
     return (
         <div className='loading__container'>

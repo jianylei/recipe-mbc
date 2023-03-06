@@ -1,8 +1,23 @@
 import { useEffect, useState } from "react"
 import { CUISINES } from "../../utils/constants"
 import { useNavigate, useSearchParams } from "react-router-dom"
+import Pagination from "./Pagination"
 
-const SearchOptions = ({ cuisineState, numberPerPageState }) => {
+/**
+ * @param {Object} cuisineState - Cuisine state
+ * @param {Object} numberPerPageState - Number per page state
+ * @param {Number} total - Total number of recipes
+ * @param {Number} currentPage - Current page number
+ * @param {Function} onPageChange - Function to change page
+ * @returns {component} - Search options component
+ */
+const SearchOptions = ({
+    cuisineState,
+    numberPerPageState,
+    total,
+    currentPage,
+    onPageChange
+}) => {
     const [cuisines, setCuisines] = cuisineState
     const [numberPerPage, setNumberPerPage] = numberPerPageState
     const [checked, setChecked] = useState(
@@ -104,6 +119,12 @@ const SearchOptions = ({ cuisineState, numberPerPageState }) => {
                 {cuisineButtons}
             </div>
             <button className="btn-reset" onClick={handleReset}>Reset</button>
+            <Pagination 
+                total={total}
+                numberPerPage={numberPerPage}
+                currentPage={currentPage}
+                onPageChange={onPageChange}
+            />
         </div>
     )
 }

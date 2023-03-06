@@ -6,9 +6,11 @@ import NotFound from "../NotFound"
 import SearchItem from "./SearchItem"
 import SearchOptions from "./SearchOptions"
 
+/**
+ * @returns {component} - The search page component
+ */
 const Search = () => {
   const [searchParams] = useSearchParams()
-
   const name = searchParams.get('query')
 
   const [page, setPage] = useState(searchParams.get('page') || 1)
@@ -56,6 +58,15 @@ const Search = () => {
           <SearchOptions
             cuisineState={[cuisines, setCuisines]} 
             numberPerPageState={[numberPerPage, setNumberPerPage]}
+            total={recipes.totalResults}
+            currentPage={page}
+            onPageChange={page => {
+              if (page < 1 || page > Math.ceil(recipes.totalResults / numberPerPage)) {
+                setPage(1)
+              } else {
+                setPage(page)
+              }
+            }}
           />
         </div>
       </div>

@@ -1,4 +1,10 @@
 import { useNavigate } from "react-router-dom"
+
+/**
+ * 
+ * @param {Object} recipe - Recipe object
+ * @returns {component} - Search item component
+ */
 const SearchItem = ({ recipe }) => {
     const navigate = useNavigate()
 

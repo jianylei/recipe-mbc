@@ -9,3 +9,14 @@ export const parseAnchorTag = (str) => {
 
     return str.replace(regStart, '').replace(regEnd, '')
 }
+
+/**
+ * @desc - Return array of numbers from start to end
+ * @param {Number} start - Start number
+ * @param {Number} end - End number
+ * @returns {Array} - Array of numbers
+ */
+export const getRange = (start, end) => {
+    const length = end - start + 1
+    return Array.from({ length }, (_, i) => start + i)
+}
