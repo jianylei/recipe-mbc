@@ -4,7 +4,7 @@
  * @returns {component} - The ingredients list component
  */
 const Ingredients = ({ ingredients }) => {
-    const ingredientList = ingredients.map((ingredient, idx) => {
+    const ingredientList = ingredients?.map((ingredient, idx) => {
         return (
             <li key={idx}>
                 {ingredient.name} - {ingredient.measures.us.amount} {ingredient.measures.us.unitShort}
@@ -16,7 +16,7 @@ const Ingredients = ({ ingredients }) => {
         <div className="ingredients__container">
             <h2>Ingredients</h2>
             <ul id="ingredients">
-                {ingredientList}
+                {ingredientList || 'No ingredients available'}
             </ul>
         </div>
     )

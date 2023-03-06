@@ -4,7 +4,7 @@
  * @return {component} - The recipe instructions
  */
 const Instructions = ({ instructions }) => {
-    const instructionList = instructions.steps.map(step => {
+    const instructionList = instructions?.steps.map(step => {
         return (
             <li key={step.number}>
                 {step.step}
@@ -16,7 +16,7 @@ const Instructions = ({ instructions }) => {
         <div className="instructions__container">
             <h2>Instructions</h2>
             <ol id="instructions">
-                {instructionList}
+                {instructionList || 'No instructions available'}
             </ol>
         </div>
     )
