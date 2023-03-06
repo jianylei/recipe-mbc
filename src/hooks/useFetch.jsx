@@ -12,11 +12,7 @@ const useFetch = (url) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(url, {
-      headers: new Headers({
-        'x-api-key': import.meta.env.VITE_SPOONACULAR_KEY
-      })
-    })
+    fetch(url + `&apiKey=${import.meta.env.VITE_SPOONACULAR_KEY}`)
       .then((response) => response.json())
       .then((data) => {
         setData(data);
