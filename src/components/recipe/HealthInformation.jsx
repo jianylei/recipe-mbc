@@ -5,16 +5,30 @@
  */
 const HealthInformation = ({ recipe }) => {
     const checked = (check) => check ? '✔' : '✘'
+    const healthInformation = [ 
+        { name: 'Dairy-free', value: recipe.dairyFree },
+        { name: 'Gluten-free', value: recipe.glutenFree },
+        { name: 'Ketogenic', value: recipe.ketogenic },
+        { name: 'Low FODMAP', value: recipe.lowFodmap },
+        { name: 'Vegan', value: recipe.vegan }, 
+        { name: 'Vegetarian', value: recipe.vegetarian },
+        { name: 'Very Healthy', value: recipe.veryHealthy }
+    ]
+
+    const healthInformationList = healthInformation.map(info => {
+        return (
+            <button 
+                key={info.name}
+                className={`btn-select btn-disable ${info.value ? 'btn-active' : ''}`}
+            >
+                {checked(info.value)} {info.name}
+            </button>
+        )
+    })
 
     return (
-        <ul id="health-information">
-            <li>Dairy-free: {checked(recipe.dairyFree)}</li>
-            <li>Gluten-free: {checked(recipe.glutenFree)}</li>
-            <li>Ketogenic: {checked(recipe.ketogenic)}</li>
-            <li>Low FODMAP: {checked(recipe.lowFodmap)}</li>
-            <li>Vegan: {checked(recipe.vegan)}</li>
-            <li>Vegetarian: {checked(recipe.vegetarian)}</li>
-            <li>Very Healthy: {checked(recipe.veryHealthy)}</li>
+        <ul className="health__container" id="health-information">
+            {healthInformationList}
         </ul>
     )
 }

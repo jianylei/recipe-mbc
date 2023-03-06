@@ -113,7 +113,7 @@ const SearchOptions = ({
     })
 
     return (
-        <div className="filter-main__container">
+        <div className="side-main__container">
             <h2>Search Options</h2>
             <h3>Recipes per page</h3>
             <div className="filter-number__container">

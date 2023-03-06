@@ -38,8 +38,10 @@ const Recipe = () => {
                     <Instructions instructions={recipe.analyzedInstructions[0]} />
                 </div>
                 <div className="section-side__container">
-                    <HealthInformation recipe={recipe} />
-                    <Ingredients ingredients={recipe.extendedIngredients} />
+                    <div className="side-main__container">
+                        <HealthInformation recipe={recipe} />
+                        <Ingredients ingredients={recipe.extendedIngredients} />
+                    </div>
                 </div>
             </div>
         )

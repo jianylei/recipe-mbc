@@ -117,6 +117,10 @@ button:focus {
   margin-bottom: 25px;
 }
 
+.btn-disable {
+  pointer-events: none;
+}
+
 .btn-reset:hover {
   border-color: var(--COLOR-GREY);
   background-color: var(--COLOR-GREY);
@@ -162,7 +166,7 @@ button:focus {
 }
 
 .section-main__container,
-.filter-main__container {
+.side-main__container {
   padding: 25px;
 }
 
@@ -189,7 +193,7 @@ button:focus {
 }
 
 /*  || FILTER */
-.filter-main__container {
+.side-main__container {
   position: sticky;
   top: 57px;
   display: flex;
@@ -205,13 +209,13 @@ button:focus {
   margin-bottom: 25px;
 }
 
-.filter-main__container h2 {
+.side-main__container h2 {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 25px;
 }
 
-.filter-main__container h3 {
+.side-main__container h3 {
   font-size: 16px;
   font-weight: 400;
 }
@@ -339,6 +343,31 @@ form {
 .instructions__container ol {
   list-style: decimal;
   padding-left: 20px;
+}
+
+.health__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.ingredients__container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ingredients__container  h2 {
+  margin: 0;
+}
+
+.ingredients__container ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* || LOADING */

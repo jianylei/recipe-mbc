@@ -13,12 +13,12 @@ const Ingredients = ({ ingredients }) => {
     })
 
     return (
-        <>
+        <div className="ingredients__container">
             <h2>Ingredients</h2>
             <ul id="ingredients">
                 {ingredientList}
             </ul>
-        </>
+        </div>
     )
 }
 
