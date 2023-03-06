@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { CUISINES } from "../../utils/constants"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import Pagination from "./Pagination"
+import useWindowDimensions from "../../hooks/useWindowDimensions"
 
 /**
  * @param {Object} cuisineState - Cuisine state
@@ -27,6 +28,8 @@ const SearchOptions = ({
     const [searchParams] = useSearchParams()
 
     const navigate = useNavigate()
+
+    const { width } = useWindowDimensions()
 
     useEffect(() => {
         if (cuisines.length) {
@@ -114,7 +117,11 @@ const SearchOptions = ({
 
     return (
         <div className="side-main__container">
-            <h2>Search Options</h2>
+            {
+                width > 904
+                    ? <h2>Search Options</h2>
+                    : null
+            }
             <h3>Recipes per page</h3>
             <div className="filter-number__container">
                 {numberButtons}
@@ -124,12 +131,16 @@ const SearchOptions = ({
                 {cuisineButtons}
             </div>
             <button className="btn-reset" onClick={handleReset}>Reset</button>
-            <Pagination 
-                total={total}
-                numberPerPage={numberPerPage}
-                currentPage={currentPage}
-                onPageChange={onPageChange}
-            />
+            {
+                width > 904
+                    ? <Pagination 
+                        total={total}
+                        numberPerPage={numberPerPage}
+                        currentPage={currentPage}
+                        onPageChange={onPageChange}
+                    />
+                    : null
+            }
         </div>
     )
 }

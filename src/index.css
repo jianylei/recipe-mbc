@@ -293,6 +293,7 @@ form {
   justify-content: center;
   gap: 12px;
   max-width: 100%;
+  margin-bottom: 25px;
 }
 
 .pagination__container span {
@@ -360,6 +361,9 @@ form {
 }
 
 .ingredients__container  h2 {
+  line-height: 28px;
+  font-size: 22px;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -388,6 +392,13 @@ form {
   border-bottom: 1px solid var(--COLOR-SEPERATOR);
 }
 
+.section-main-side {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+}
+
 /* || LOADING */
 .loading__container {
   height: min(600px, calc(100vh - 114px));
@@ -400,5 +411,9 @@ form {
 @media screen and (max-width: 904px) {
   .section__container {
     grid-template-columns: 1fr;
+  }
+  .side-main__container {
+    position: static;
+    padding: 0;
   }
 }

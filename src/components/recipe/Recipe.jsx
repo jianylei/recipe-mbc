@@ -6,6 +6,7 @@ import Ingredients from "./Ingredients"
 import Instructions from "./Instructions"
 import RecipeHeader from "./RecipeHeader"
 import Loading from "../Loading"
+import useWindowDimensions from "../../hooks/useWindowDimensions"
 
 /**
  * @queryParam {string} id - The id of the recipe
@@ -15,6 +16,8 @@ const Recipe = () => {
     const { id } = useParams()
 
     const { loading, error, data: recipe } = useFetch(`https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false`)
+
+    const { width } = useWindowDimensions()
 
     let content
 
@@ -35,14 +38,26 @@ const Recipe = () => {
                         image={recipe.image}
                         summary={recipe.summary}
                     />
+                    {
+                        width <= 904
+                            ? <div className="section-main-side">
+                                <HealthInformation recipe={recipe} />
+                                <Ingredients ingredients={recipe.extendedIngredients} />
+                            </div>
+                            : null
+                    }
                     <Instructions instructions={recipe.analyzedInstructions[0]} />
                 </div>
-                <div className="section-side__container">
-                    <div className="side-main__container">
-                        <HealthInformation recipe={recipe} />
-                        <Ingredients ingredients={recipe.extendedIngredients} />
-                    </div>
-                </div>
+                {
+                    width > 904
+                        ? <div className="section-side__container">
+                             <div className="side-main__container">
+                                 <HealthInformation recipe={recipe} />
+                                 <Ingredients ingredients={recipe.extendedIngredients} />
+                             </div>
+                         </div>
+                        : null
+                }
             </div>
         )
     }
