@@ -28,15 +28,19 @@ const Recipe = () => {
 
     if (recipe) {
         content = (
-            <div>
-                <RecipeHeader
-                    title={recipe.title}
-                    image={recipe.image}
-                    summary={recipe.summary}
-                />
-                <HealthInformation recipe={recipe} />
-                <Ingredients ingredients={recipe.extendedIngredients} />
-                <Instructions instructions={recipe.analyzedInstructions[0]} />
+            <div className="section__container">
+                <div className="section-main__container">
+                    <RecipeHeader
+                        title={recipe.title}
+                        image={recipe.image}
+                        summary={recipe.summary}
+                    />
+                    <Instructions instructions={recipe.analyzedInstructions[0]} />
+                </div>
+                <div className="section-side__container">
+                    <HealthInformation recipe={recipe} />
+                    <Ingredients ingredients={recipe.extendedIngredients} />
+                </div>
             </div>
         )
     }

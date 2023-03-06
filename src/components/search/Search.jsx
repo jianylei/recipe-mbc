@@ -13,7 +13,7 @@ const Search = () => {
   const [searchParams] = useSearchParams()
   const name = searchParams.get('query')
 
-  const [page, setPage] = useState(searchParams.get('page') || 1)
+  const [page, setPage] = useState(+searchParams.get('page') || 1)
   const [numberPerPage, setNumberPerPage] = useState(searchParams.get('number') || 5)
   const [cuisines, setCuisines] = useState(
     searchParams.get('cuisine') ? searchParams.get('cuisine').split(',') : []
@@ -24,7 +24,8 @@ const Search = () => {
   const offset = (page - 1) * numberPerPage
 
   const url = `https://api.spoonacular.com/recipes/complexSearch?query=${decoded}` 
-    + `&number=${numberPerPage}&offset=${offset}&cuisine=${cuisines.join(',')}`
+    + `&number=${numberPerPage}&offset=${offset}`
+    + `${cuisines.length ? `&cuisine=${cuisines.join(',')}` : '' }`
 
   const { loading, error, data: recipes } = useFetch(url)
 
@@ -46,8 +47,8 @@ const Search = () => {
     })
 
     content = (
-      <div className="search-main__container">
-        <div className="search-results__container">
+      <div className="section__container">
+        <div className="section-main__container">
           <h1 className="search-results__title">Results for <span>{decoded}</span></h1>
           { recipes.results.length === 0
             ? name
@@ -56,7 +57,7 @@ const Search = () => {
             : recipeList
           }
         </div>
-        <div className="search-filter__container">
+        <div className="section-side__container">
           <SearchOptions
             cuisineState={[cuisines, setCuisines]} 
             numberPerPageState={[numberPerPage, setNumberPerPage]}
@@ -74,7 +75,7 @@ const Search = () => {
                 search: `?query=${searchParams.get('query')}`
                   + `&page=${p}`
                   + `&number=${searchParams.get('number')}`
-                  + `&cuisine=${searchParams.get('cuisine')}`
+                  + `${searchParams.get('cuisine') ? `&cuisine=${searchParams.get('cuisine')}` : '' }`
               })
             }}
           />

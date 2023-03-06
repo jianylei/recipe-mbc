@@ -13,12 +13,12 @@ const Instructions = ({ instructions }) => {
     })
 
     return (
-        <>
+        <div className="instructions__container">
             <h2>Instructions</h2>
             <ol id="instructions">
                 {instructionList}
             </ol>
-        </>
+        </div>
     )
 }
 

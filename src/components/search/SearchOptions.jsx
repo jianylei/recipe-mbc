@@ -44,6 +44,7 @@ const SearchOptions = ({
         const newChecked = [...checked]
         newChecked[index] = !newChecked[index]
         setChecked(newChecked)
+        onPageChange(1)
 
         navigate({
             pathname: '/search',
@@ -59,19 +60,19 @@ const SearchOptions = ({
         } else {
             setCuisines(cuisines.filter((cuisine) => cuisine !== CUISINES[index]))
         }
-        onPageChange(1)
+        
     }
 
     const handleNumberClick = (num) => {
+        onPageChange(1)
         navigate({
             pathname: '/search',
             search: `?query=${searchParams.get('query')}`
                 + `&page=1`
                 + `&number=${num}`
-                + `&cuisine=${cuisines.join(',')}`
+                + `${searchParams.get('cuisine') ? `&cuisine=${searchParams.get('cuisine')}` : ''}`
         })
         setNumberPerPage(num)
-        onPageChange(1)
     }
 
     const handleReset = () => {
@@ -84,6 +85,7 @@ const SearchOptions = ({
         setChecked(new Array(CUISINES.length).fill(false))
         setCuisines([])
         setNumberPerPage(5)
+        onPageChange(1)
     }
 
     const cuisineButtons = CUISINES.map((cuisine, index) => {

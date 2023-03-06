@@ -10,11 +10,13 @@ import { parseAnchorTag } from '../../utils/util'
  */
 const RecipeHeader = ({ title, image, summary }) => {
     return (
-        <>
-            <h1>{title}</h1>
-            <img src={image} />
-            <p>{parse(parseAnchorTag(summary))}</p>
-        </>
+        <div className='recipe-header__container'>
+            <h1 className='recipe__title'>{title}</h1>
+            <img className='recipe__image' src={image} />
+            <div className='recipe-summary__container'>
+                {parse(parseAnchorTag(summary))}
+            </div>
+        </div>
     )
 }
 
