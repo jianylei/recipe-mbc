@@ -62,7 +62,7 @@ const Search = () => {
       });
     };
 
-    const recipeList = recipes.results.map((recipe) => {
+    const recipeList = recipes.results?.map((recipe) => {
       return <SearchItem key={recipe.id} recipe={recipe} />;
     });
 
@@ -81,7 +81,7 @@ const Search = () => {
               onPageChange={onPageChange}
             />
           ) : null}
-          {recipes.results.length === 0 ? (
+          {recipes.results?.length === 0 ? (
             name ? (
               <div>No recipes found for {decoded}</div>
             ) : (

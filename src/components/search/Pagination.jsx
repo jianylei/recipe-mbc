@@ -17,12 +17,12 @@ const Pagination = ({ total, numberPerPage, currentPage, siblingCount = 1, onPag
     siblingCount
   });
 
-  if (currentPage === 0 || paginationRange.length < 2) return null;
+  if (currentPage === 0 || paginationRange?.length < 2) return null;
 
   const nextPage = () => onPageChange(currentPage + 1);
   const prevPage = () => onPageChange(currentPage - 1);
 
-  const lastPage = paginationRange[paginationRange.length - 1];
+  const lastPage = paginationRange[paginationRange?.length - 1];
 
   const pageButtons = paginationRange.map((pageNumber, index) => {
     if (pageNumber === SEPERATOR) {

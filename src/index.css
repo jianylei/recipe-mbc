@@ -415,4 +415,7 @@ form {
     position: static;
     padding: 0;
   }
+  .home-section__container {
+    padding: 0 10px;
+  }
 }
