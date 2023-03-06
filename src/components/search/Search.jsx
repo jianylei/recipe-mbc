@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import useFetch from "../../hooks/useFetch"
+import Loading from "../Loading"
 import NotFound from "../NotFound"
 import SearchItem from "./SearchItem"
 import SearchOptions from "./SearchOptions"
@@ -28,7 +29,7 @@ const Search = () => {
   let content 
 
   if (loading) {
-    content = <div>Loading...</div>
+    content = <Loading />
   }
 
   if (error) {

@@ -5,6 +5,7 @@ import HealthInformation from "./HealthInformation"
 import Ingredients from "./Ingredients"
 import Instructions from "./Instructions"
 import RecipeHeader from "./RecipeHeader"
+import Loading from "../Loading"
 
 /**
  * @queryParam {string} id - The id of the recipe
@@ -18,7 +19,7 @@ const Recipe = () => {
     let content
 
     if (loading) {
-        content = <div>Loading...</div>
+        content = <Loading />
     }
 
     if (error) {
