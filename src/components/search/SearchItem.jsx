@@ -7,9 +7,20 @@ const SearchItem = ({ recipe }) => {
     }
 
     return (
-        <div onClick={handleClick}>
-            <h2>{recipe.title}</h2>
-            <img src={recipe.image} alt={recipe.title} />
+        <div className="search-item__container">
+            <h2
+                className="search-item-title"
+                onClick={handleClick}
+            >
+                {recipe.title}
+            </h2>
+            <img
+                className="search-item-image"
+                src={recipe.image}
+                alt={recipe.title}
+                loading="lazy"
+                onClick={handleClick}
+            />
         </div>
     )
 }
