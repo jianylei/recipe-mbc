@@ -28,9 +28,8 @@ export const usePagination = ({
             Case 1: If the total number of pages is less than the total number of page numbers
         */
         if (totalPageNumbers >= totalPageCount) {
-            return range(1, totalPageCount)
+            return getRange(1, totalPageCount)
         }
-
 
         /*
             Calculate the left and right sibling index 

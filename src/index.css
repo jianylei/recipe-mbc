@@ -56,6 +56,24 @@ button:focus {
   padding: 0;
 }
 
+.btn-page {
+  color: var(--COLOR-GREY);
+  border: none;
+  height: 25px;
+  width: 25px;
+  padding: 0;
+}
+
+.btn-page-nav {
+  background-color: transparent;
+  color: var(--COLOR-GREY);
+  border: none;
+  border-radius: 0;
+  height: 25px;
+  width: 25px;
+  transition: color 200ms ease-in;
+}
+
 .btn-select:hover {
   border-color: var(--COLOR-GREY);
   background-color: var(--COLOR-GREY);
@@ -65,6 +83,17 @@ button:focus {
 .btn-active {
   border-color: var(--COLOR-ACTIVE);
   color: var(--COLOR-ACTIVE);
+}
+
+.page-active {
+  border-color: var(--COLOR-ACTIVE);
+  background-color: var(--COLOR-ACTIVE);
+  color: var(--COLOR-LIGHT);
+}
+
+.btn-page-nav-active {
+  color: var(--COLOR-ACTIVE);
+  cursor: pointer;
 }
 
 .btn-select.btn-active:hover {
@@ -85,12 +114,17 @@ button:focus {
   padding: 6px 12px;
   text-transform: capitalize;
   transition: all 200ms ease-in;
+  margin-bottom: 25px;
 }
 
 .btn-reset:hover {
   border-color: var(--COLOR-GREY);
   background-color: var(--COLOR-GREY);
   color: var(--COLOR-LIGHT);
+}
+
+.btn-page-nav:hover {
+  color: var(--COLOR-GREY);
 }
 
 /* || HEADER */
@@ -245,6 +279,23 @@ form {
   position: absolute;
   top: 11px;
   left: 0;
+}
+
+/* || PAGINATION */
+.pagination__container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pagination__container span {
+  color: var(--COLOR-GREY);
+}
+
+.page-btn__container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }
 
 /* || LOADING */

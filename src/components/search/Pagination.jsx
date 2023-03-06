@@ -38,20 +38,33 @@ const Pagination = ({
         return (
             <button
                 key={index}
-                className={`btn-page`}
+                className={`btn-select btn-page ${+currentPage === pageNumber ? 'page-active' : ''}`}
                 onClick={() => onPageChange(pageNumber)}
             >
                 {pageNumber}
             </button>
         )
     })
-    console.log(currentPage)
 
     return (
-        <div>
-            <button onClick={prevPage} disabled={+currentPage === 1}>Prev</button>
-            {pageButtons}
-            <button onClick={nextPage} disabled={+currentPage === lastPage}>Next</button>
+        <div className="pagination__container">
+            <button 
+                className={`btn-page-nav ${+currentPage === 1 ? '' : 'btn-page-nav-active'}`}
+                onClick={prevPage}
+                disabled={+currentPage === 1}
+            >
+                Prev
+            </button>
+            <div className="page-btn__container">
+                {pageButtons}
+            </div>
+            <button
+                className={`btn-page-nav ${+currentPage === lastPage ? '' : 'btn-page-nav-active'}`}
+                onClick={nextPage}
+                disabled={+currentPage === lastPage}
+            >
+                Next
+            </button>
         </div>
     )
 }

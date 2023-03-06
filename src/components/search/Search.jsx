@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import useFetch from "../../hooks/useFetch"
 import Loading from "../Loading"
 import NotFound from "../NotFound"
@@ -27,6 +27,8 @@ const Search = () => {
     + `&number=${numberPerPage}&offset=${offset}&cuisine=${cuisines.join(',')}`
 
   const { loading, error, data: recipes } = useFetch(url)
+
+  const navigate = useNavigate()
 
   let content 
 
@@ -61,11 +63,19 @@ const Search = () => {
             total={recipes.totalResults}
             currentPage={page}
             onPageChange={page => {
-              if (page < 1 || page > Math.ceil(recipes.totalResults / numberPerPage)) {
-                setPage(1)
-              } else {
-                setPage(page)
-              }
+              const p = (page < 1) || (page > Math.ceil(recipes.totalResults / numberPerPage))
+                ? 1
+                : page
+
+              setPage(p)
+
+              navigate({
+                pathname: '/search',
+                search: `?query=${searchParams.get('query')}`
+                  + `&page=${p}`
+                  + `&number=${searchParams.get('number')}`
+                  + `&cuisine=${searchParams.get('cuisine')}`
+              })
             }}
           />
         </div>
